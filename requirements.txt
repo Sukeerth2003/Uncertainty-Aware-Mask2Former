@@ -1,0 +1,16 @@
+# Core Deep Learning Engine 
+# (Mask2Former was developed on CUDA 11.1. Matching this avoids compilation errors)
+torch>=1.9.0+cu111 
+torchvision>=0.10.0+cu111
+
+# Standard Math/Array Operations
+numpy>=1.19.5
+scipy>=1.5.4
+
+# --- IMPORTANT INSTALLATION NOTE ---
+# To run the full framework, users MUST install Detectron2 and the 
+# base Mask2Former dependencies as outlined in the official Facebook Research repo.
+#
+# WARNING: Mask2Former's MultiScaleDeformableAttention extension is highly 
+# sensitive to CUDA versions. It is strongly recommended to build your 
+# environment using CUDA 11.1 or 11.3 to ensure successful compilation.
