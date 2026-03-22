@@ -51,5 +51,20 @@ These files are designed to be integrated directly into the official [Mask2Forme
 2. Route the mask features through the `SpatialUncertaintyHead`.
 3. Swap the standard Cross-Entropy loss with the composite functions provided in `losses.py`.
 
+## Training Configuration & Hyperparameters
+The model was trained to ensure reproducibility across the Mapillary Vistas dataset using the following configuration. *Computing resources were generously provided by ACCESS CI.*
+
+| Parameter | Value |
+| :--- | :--- |
+| **Hardware** | NCSA Delta at UIUC (NVIDIA A100 40GB GPUs) |
+| **Optimizer** | AdamW |
+| **Base Learning Rate** | 1 × 10⁻⁴ |
+| **Weight Decay** | 0.05 |
+| **Batch Size** | 16 |
+| **Training Iterations** | 90,000 (80 Epochs) |
+| **Evidential Loss Weight ($\lambda_{evi}$)** | 0.005 |
+| **Spatial Loss Weight ($\lambda_{spat}$)** | 0.005 |
+| **Confidence Threshold ($\tau$)** | 0.8 |
+
 ## Documentation
 The complete mathematical derivations, zero-shot evaluation on the ACDC adverse-weather dataset, and the "Trust-PQ Paradox" analysis can be found in the `/docs` folder, which includes the full Master's Report and Defense Presentation.
