@@ -12,6 +12,16 @@ Standard perception models are fundamentally overconfident. To solve this, we re
 * `spatial_head.py`: A variance-based spatial head that maps boundary hesitation to a Gaussian distribution (Spatial Uncertainty).
 * `losses.py`: Custom mathematical formulations including a Gaussian Negative Log-Likelihood (NLL) to attenuate spatial regression errors, and an Evidential KL-Divergence penalty.
 
+## Visualizing Uncertainty
+To understand how the mathematical extensions translate to real-world safety, we extract and visualize the raw doubt from both heads before any safety threshold is applied:
+
+![Visual Results](assets/reference_images.png)
+
+* **Input:** The raw RGB image captured by the vehicle's camera in adverse weather conditions.
+* **Raw Segmentation Map:** The baseline panoptic prediction before safety thresholding.
+* **Spatial (Variance) Map:** Extracted from the spatial head. High variance (shown in red/yellow) highlights geometric hesitation, perfectly mapping the blurry boundaries and edges of degraded objects.
+* **Semantic (Entropy) Map:** Calculated from the Dirichlet expected probabilities. High predictive entropy (shown in bright yellow) highlights regions where the model lacks the categorical evidence to confidently identify an object.
+
 ## Model Configuration & Backbone
 This framework leverages the powerful **Swin-Large Transformer** backbone (pre-trained on ImageNet-21k at 384x384 resolution) to extract high-resolution, multi-scale features before routing them into our dual-uncertainty heads. 
 
