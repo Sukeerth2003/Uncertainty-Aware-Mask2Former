@@ -66,5 +66,22 @@ The model was trained to ensure reproducibility across the Mapillary Vistas data
 | **Spatial Loss Weight ($\lambda_{spat}$)** | 0.005 |
 | **Confidence Threshold ($\tau$)** | 0.8 |
 
+### Training Stability (Handling Exploding Gradients)
+Because the custom spatial variance (NLL) and evidential (KL-Divergence) losses can produce unstable gradients early in training, we enforce strict gradient clipping and utilize a polynomial learning rate scheduler with warmup to stabilize the Transformer Decoder. 
+
+If integrating this into your own Mask2Former config, ensure these solver parameters are set:
+
+```python
+# Learning Rate Scheduler
+cfg.SOLVER.LR_SCHEDULER_NAME = "WarmupPolyLR"
+cfg.SOLVER.POLY_LR_POWER = 0.9
+
+# Gradient Clipping for Probabilistic Loss Stability
+cfg.SOLVER.CLIP_GRADIENTS.ENABLED = True
+cfg.SOLVER.CLIP_GRADIENTS.CLIP_TYPE = "value"
+cfg.SOLVER.CLIP_GRADIENTS.CLIP_VALUE = 0.01 
+cfg.SOLVER.CLIP_GRADIENTS.NORM_TYPE = 2.0
+```
+
 ## Documentation
 The complete mathematical derivations, zero-shot evaluation on the ACDC adverse-weather dataset, and the "Trust-PQ Paradox" analysis can be found in the `/docs` folder, which includes the full Master's Report and Defense Presentation.
