@@ -13,7 +13,7 @@ Standard perception models are fundamentally overconfident. To solve this, we re
 * `losses.py`: Custom mathematical formulations including a Gaussian Negative Log-Likelihood (NLL) to attenuate spatial regression errors, and an Evidential KL-Divergence penalty.
 
 ## Visualizing Uncertainty
-To understand how the mathematical extensions translate to real-world safety, we extract and visualize the raw doubt from both heads before any safety threshold is applied:
+To understand how the mathematical extensions translate to real-world safety, we extract and visualize the raw doubt from both heads:
 
 ![Visual Results](assets/reference_images.png)
 
