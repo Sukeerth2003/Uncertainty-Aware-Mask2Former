@@ -43,6 +43,7 @@ datasets/
         ├── annotations/
         ├── images/
         └── panoptic/
+```
 
 ## Usage
 These files are designed to be integrated directly into the official [Mask2Former codebase](https://github.com/facebookresearch/Mask2Former). 
