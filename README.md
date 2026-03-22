@@ -1,5 +1,7 @@
 # Uncertainty-Aware Mask2Former (Core Extensions)
 
+![Uncertainty-Aware Architecture](assets/architecture_diagram.png)
+
 This repository contains the core architectural extensions and custom loss functions developed for my Master's Defense project: **Uncertainty-Aware Mask2Former for Autonomous Vehicles**. 
 
 Rather than duplicating the entire Mask2Former framework, this repository isolates the novel dual-uncertainty contributions designed to replace standard deterministic classification.
@@ -9,6 +11,14 @@ Standard perception models are fundamentally overconfident. To solve this, we re
 * `evidential_head.py`: An Evidential Deep Learning (EDL) head that outputs raw evidence to parameterize a Dirichlet distribution, quantifying categorical doubt (Semantic Uncertainty).
 * `spatial_head.py`: A variance-based spatial head that maps boundary hesitation to a Gaussian distribution (Spatial Uncertainty).
 * `losses.py`: Custom mathematical formulations including a Gaussian Negative Log-Likelihood (NLL) to attenuate spatial regression errors, and an Evidential KL-Divergence penalty.
+
+## Model Configuration & Backbone
+This framework leverages the powerful **Swin-Large Transformer** backbone (pre-trained on ImageNet-21k at 384x384 resolution) to extract high-resolution, multi-scale features before routing them into our dual-uncertainty heads. 
+
+When running training or evaluation scripts, ensure you initialize the model with the corresponding configuration file:
+```bash
+--config-file maskformer2_swin_large_IN21k_384_bs16_300k.yaml
+```
 
 ## Datasets & Data Preparation
 This project utilizes two primary datasets to train and rigorously evaluate the dual-uncertainty framework.
